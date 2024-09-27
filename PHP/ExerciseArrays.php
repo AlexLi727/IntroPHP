@@ -48,3 +48,22 @@ foreach(array_reverse($nota) as $antonio => $nombre){
     echo "$antonio: $nombre ";
 }
 
+echo "<br>";
+$media = array_sum($nota)/count($nota);
+echo "Media de las notas: ". round($media, 2);
+echo "<br> Alumnos con nota por encima de la media: <br>";
+foreach($nota as $alumno => $num){
+    if($num > $media){
+        echo $alumno. "<br>";
+    }
+}
+
+$mejorNota = 0;
+foreach($nota as $alumno => $num){
+    if($num > $mejorNota){
+        $mejorNota = $num;
+        $mejorAlumno = $alumno;
+    }
+}
+
+echo "<br> La nota más alta es $mejorNota y el mejor alumno es $mejorAlumno";
