@@ -31,22 +31,23 @@ if(isset($_POST["name"]) && isset($_POST["quantity"])){
     $name = $_POST["name"];
     $drink = $_POST["drink"];
     $quantity = $_POST["quantity"];
-    
+
     if(trim($name) != ""){
     echo "<h2> Inventory: </h2>";
     session_start();
-    if(isset($_SESSION[$name])){
-
-    }else{
+    if(!isset($_SESSION[$name])){
         $_SESSION[$name]["milk"] = 0;
         $_SESSION[$name]["soda"] = 0;
     }
+
     if(isset($_POST["add"])){
-        if($_SESSION[$name][$drink] += $quantity < 0){
-            $_SESSION[$name][$drink] += $quantity;
-        }
-    }elseif($_SESSION[$name][$drink] -= $quantity < 0){
-        $_SESSION[$name][$drink] -= $quantity;
+        $resultado = $_SESSION[$name][$drink] + $quantity;
+        if($resultado >= 0)
+        $_SESSION[$name][$drink] = $resultado;
+    }elseif(isset($_POST["remove"])){
+        $resultado = $_SESSION[$name][$drink] - $quantity;
+        if($resultado >= 0)
+        $_SESSION[$name][$drink] = $resultado;
     }
     
     echo "worker: $name <br>";
