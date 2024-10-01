@@ -42,8 +42,10 @@ if(isset($_POST["name"]) && isset($_POST["quantity"])){
         $_SESSION[$name]["soda"] = 0;
     }
     if(isset($_POST["add"])){
-        $_SESSION[$name][$drink] += $quantity;
-    }else{
+        if($_SESSION[$name][$drink] += $quantity < 0){
+            $_SESSION[$name][$drink] += $quantity;
+        }
+    }elseif($_SESSION[$name][$drink] -= $quantity < 0){
         $_SESSION[$name][$drink] -= $quantity;
     }
     
