@@ -23,19 +23,17 @@ if(!isset($_SESSION["numbers"])){
     </select>
     <br> <br>
     New value:
-    <input type = text name = value>
+    <input type = number name = value>
     <br> <br>
     <input type = submit value = Modify name = option>
     <input type = submit value = Average name = option>
-    <input type = submit value = Reset name = option>
+    <input type = reset value = Reset>
     </form>
     <br>
 </body>
 </html>
 
 <?php
-
-
 if(isset($_POST["option"])){
     $option = $_POST["option"];
     $position = $_POST["position"];
@@ -45,14 +43,12 @@ if(isset($_POST["option"])){
     }elseif($option == "Average"){
         echo "<br> Average : ";
         echo array_sum(($_SESSION["numbers"]))/count(($_SESSION["numbers"]));
-        echo "Current array: ";
-        foreach($_SESSION["numbers"] as $number){
-        echo "$number, ";
-        }
+        echo "<br>";
     }  
 }
-    echo "Current array: ";
-    foreach($_SESSION["numbers"] as $number){
-    echo "$number, ";
-    }
+echo "Current array: ";
+foreach($_SESSION["numbers"] as $number){
+echo "$number, ";
+}
+    
 ?>
