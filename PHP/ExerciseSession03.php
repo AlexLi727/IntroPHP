@@ -81,16 +81,22 @@ foreach(array_keys($_SESSION) as $name){
     </td>
     </tr>
     ";
-    $total += $precio;
 }
 
 echo "
 <tr>
 <td> </td>
 <td> </td>
-<td> Total: </td>
-<td> </td>
-<td> <button name = Calculate value = si type = submit> Calculate Total </button> </td>
+<td> Total: </td>";
+if(isset($_POST["Calculate"])){
+    $total = 0;
+    foreach(array_keys($_SESSION) as $name){
+        $precio = $_SESSION[$name][0] * $_SESSION[$name][1];
+        $total += $precio;
+    }
+}
+echo "<td> $total </td>";
+echo "<td> <form method = POST> <button name = Calculate type = submit> Calculate Total </button> </form> </td>
 </tr>
 ";
 echo "</table>";
